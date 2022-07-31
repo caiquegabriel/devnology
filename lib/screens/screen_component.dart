@@ -1,4 +1,3 @@
-import 'package:devnology/style.dart';
 import 'package:devnology/template/template_footer.dart';
 import 'package:devnology/template/template_header.dart';
 import 'package:flutter/material.dart';
@@ -9,10 +8,6 @@ mixin ScreenComponent <T extends StatefulWidget > on State<T> {
     {
       body,
       Color? backgroundColor,
-      header,
-      drawer,
-      positioned,
-      padding,
       bool resizeToAvoidBottomInset = false,
       bool showFooter = true
     }
@@ -24,18 +19,11 @@ mixin ScreenComponent <T extends StatefulWidget > on State<T> {
       ];
     }
 
-    positioned ??= const <Widget>[
-      SizedBox.shrink()
-    ];
-
-    //_positioned =  positioned;
-
     return WillPopScope(  
       onWillPop: () {  
         return Future.value(false);
       },
       child: Scaffold(
-        drawer: drawer,
         resizeToAvoidBottomInset: resizeToAvoidBottomInset, 
         body: GestureDetector(
           onTap: (){ 

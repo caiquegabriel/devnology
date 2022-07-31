@@ -1,5 +1,4 @@
 import 'package:devnology/components/products/widget_product_preview.dart';
-import 'package:devnology/components/titles/widget_title_h2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -9,13 +8,12 @@ class CategoryPreviewProducts extends StatefulWidget {
 
   @override
   CategoryPreviewProductsState createState() => CategoryPreviewProductsState();
-
 }
 
 class CategoryPreviewProductsState extends State<CategoryPreviewProducts> {
 
   double _childAspectRation = 10;
-  double _distance = 11;
+  final double _distance = 11;
   double _productHeight = 0;
 
   @override
@@ -40,30 +38,24 @@ class CategoryPreviewProductsState extends State<CategoryPreviewProducts> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.all(0),
       width: double.infinity,
       height: _productHeight + 45,
-      child: Column(
-        children: [
-          const TitleH2("Latest"),
-          Expanded(
-            child: GridView(
-              physics: const NeverScrollableScrollPhysics(),
-              padding: const EdgeInsets.all(0),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                mainAxisSpacing: _distance,
-                crossAxisSpacing: _distance,
-                childAspectRatio: _childAspectRation
-              ),
-              children: const [
-                ProductPreview(),
-                ProductPreview(),
-                ProductPreview(),
-              ],
-            )
-          )
-        ]
-      ),
+      child: GridView(
+        physics: const NeverScrollableScrollPhysics(),
+        padding: const EdgeInsets.all(0),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3,
+          mainAxisSpacing: _distance,
+          crossAxisSpacing: _distance,
+          childAspectRatio: _childAspectRation
+        ),
+        children: const [
+          ProductPreview(),
+          ProductPreview(),
+          ProductPreview(),
+        ],
+      )
     );
   }
 }

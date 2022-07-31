@@ -1,5 +1,4 @@
 import 'package:devnology/components/widget_custom_image.dart';
-import 'package:devnology/helpers.dart';
 import 'package:flutter/material.dart';
 
 class ProductPreview extends StatefulWidget {

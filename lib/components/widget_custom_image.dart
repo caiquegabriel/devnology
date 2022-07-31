@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:devnology/helpers.dart';
-import 'package:devnology/utils/CacheImage.dart';
+import 'package:devnology/utils/cache_image.dart';
 import 'package:flutter/material.dart';
 
 class CustomImage extends StatefulWidget{ 

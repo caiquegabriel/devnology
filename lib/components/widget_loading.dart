@@ -1,7 +1,4 @@
-import 'package:devnology/components/products/widget_product_preview.dart';
-import 'package:devnology/components/titles/widget_title_h2.dart';
 import 'package:devnology/components/widget_custom_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Loading extends StatefulWidget {
@@ -25,6 +22,7 @@ class LoadingState extends State<Loading> {
         color: Colors.white.withOpacity(0.85)
       ),
       child: Container(
+        margin: const EdgeInsets.all(0),
         child: const CustomImage(
           width: 80,
           height: 80,

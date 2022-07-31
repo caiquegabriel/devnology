@@ -1,3 +1,4 @@
+import 'package:devnology/style.dart';
 import 'package:flutter/material.dart';
 
 class TitleH2 extends StatefulWidget {
@@ -28,6 +29,7 @@ class TitleH2State extends State<TitleH2> {
         overflow: TextOverflow.ellipsis,
         style: const TextStyle(
           fontSize: 30,
+          color: primaryColor,
           fontWeight: FontWeight.w900
         ),
       )

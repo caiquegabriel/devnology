@@ -1,4 +1,3 @@
-import 'package:devnology/screens/screen_component.dart';
 import 'package:devnology/style.dart';
 import 'package:flutter/material.dart';
 
