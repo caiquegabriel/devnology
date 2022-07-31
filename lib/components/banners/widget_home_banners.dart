@@ -14,16 +14,38 @@ class HomeBanners extends StatefulWidget {
 
 class HomeBannersState extends State<HomeBanners> {
 
+
+  double _bannerHeigth = 180;
+  double _bannerWidth = 325;
+
   @override
   void initState() {
     super.initState();
+
+    WidgetsBinding.instance.addPersistentFrameCallback((_) {
+      _calculateProportion();
+    });
+  }
+
+  /// No figma, a dimensão do banner é de 325px x 180px, para uma tela de 375px
+  /// Mas é necessário adaptar a dimensão de acordo com o tamanho da tela...
+  /// Sendo necessário calcular a proporção e aplicar nas dimensões do banner
+  void _calculateProportion() {
+    double proportion = MediaQuery.of(context).size.width / figmaAppWidth;
+
+    setState(() {
+      _bannerHeigth = _bannerHeigth * proportion;
+      _bannerWidth = _bannerWidth * proportion;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 250,
+      margin: const EdgeInsets.only(
+        bottom: 25
+      ),
       child: Column(
         children: [
           const TitleH2(
@@ -32,7 +54,7 @@ class HomeBannersState extends State<HomeBanners> {
           Container(
             color: Colors.purple,
             width: double.infinity,
-            height: 180,
+            height: _bannerHeigth,
             child: GridView(
               padding: const EdgeInsets.all(0),
               physics: const PageScrollPhysics(),
@@ -41,12 +63,9 @@ class HomeBannersState extends State<HomeBanners> {
                 crossAxisCount: 1,
                 mainAxisSpacing: 10,
                 crossAxisSpacing: 10,
-                //mainAxisExtent: 10,
                 childAspectRatio: 0.1,
-                /// Fará um calculo pra seguir a propoção de acorodo com o Figma.
-                /// 325 px é o tamanho do banner
                 /// 15 é o tamanho do banner seguinte que ficará visível.
-                mainAxisExtent: (MediaQuery.of(context).size.width / figmaAppWidth) * 325 - 15
+                mainAxisExtent: _bannerWidth - 15
               ),
               children: const [
                 CustomBanner(),

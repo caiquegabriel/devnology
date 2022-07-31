@@ -4,7 +4,6 @@ import 'package:devnology/style.dart';
 import 'package:flutter/material.dart';
 
 class CategoryButton extends StatefulWidget {
-
   final Category category;
 
   const CategoryButton({Key? key, required this.category}) : super(key: key);
@@ -15,9 +14,29 @@ class CategoryButton extends StatefulWidget {
 
 class CategoryButtonState extends State<CategoryButton> {
 
+  double _buttonSize = 65.00;
+  double _titleSize = 15.00;
+
   @override
   void initState() {
     super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _calculateProportion();
+    });
+  }
+
+
+  /// Calcula a proporção de acordo com as dimensões no figma.
+  /// No figma, as dimensõs do botão é de 65 px, para uma tela de 375px.
+  /// Mas, em telas maiores, os botões ficavam pequenos e bem distantes, então necessita-se de um calculo pra manter a proporção.
+  void _calculateProportion() {
+    double proportion = MediaQuery.of(context).size.width / figmaAppWidth;
+
+    setState(() {
+      _buttonSize = _buttonSize * proportion;
+      _titleSize = _titleSize * proportion;
+    });
   }
 
   @override
@@ -25,10 +44,12 @@ class CategoryButtonState extends State<CategoryButton> {
     return InkWell(
       key: GlobalKey(),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            width: 65,
-            height: 65,
+            width: _buttonSize,
+            height: _buttonSize,
             margin: const EdgeInsets.only(
               bottom: 8
             ),
@@ -37,13 +58,17 @@ class CategoryButtonState extends State<CategoryButton> {
             ),
             clipBehavior: Clip.antiAlias,
             child: CustomImage(
+              width: _buttonSize,
+              height: _buttonSize,
               image: widget.category.thumbnail,
+              local: true,
+              fit: BoxFit.fill,
             ),
           ),
           Text(
             widget.category.name,
-            style: const TextStyle(
-              fontSize: 15,
+            style: TextStyle(
+              fontSize: _titleSize,
               color: primaryColor,
               overflow: TextOverflow.ellipsis,
               fontWeight: FontWeight.w400
