@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 
 class HomeCategories extends StatefulWidget {
   final List<Category> categories;
+  final EdgeInsets? padding;
 
-  const HomeCategories({Key? key, required this.categories}) : super(key: key);
+  const HomeCategories({Key? key, this.padding, required this.categories}) : super(key: key);
 
   @override
   HomeCategoriesState createState() => HomeCategoriesState();
@@ -39,6 +40,7 @@ class HomeCategoriesState extends State<HomeCategories> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: widget.padding,
       margin: const EdgeInsets.only(
         bottom: 22
       ),

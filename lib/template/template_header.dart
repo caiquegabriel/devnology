@@ -2,10 +2,12 @@ import 'package:devnology/style.dart';
 import 'package:devnology/template/template_button.dart';
 import 'package:devnology/template/template_header_logo.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
 class TemplateHeader extends StatefulWidget {
-  const TemplateHeader({Key? key}) : super(key: key);
+  final bool? showBackButton;
+  final TemplateButton? customButton;
+
+  const TemplateHeader({Key? key, this.showBackButton, this.customButton}) : super(key: key);
 
   @override
   TemplateHeaderState createState() => TemplateHeaderState();
@@ -28,26 +30,45 @@ class TemplateHeaderState extends State<TemplateHeader> {
       child: SafeArea(
         bottom: false,
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            (widget.showBackButton == true)
+              ?
+                const TemplateButton(
+                  width: 60,
+                  iconSize: 20,
+                  icon: CupertinoIcons.chevron_back,
+                )
+              :
+                const SizedBox.shrink(),
             const TemplateHeaderLogo(),
-            Expanded(
-              child: Row(
-                children: const [
-                  Expanded(
-                    child: TemplateButton(
-                      width: 60,
-                      icon: CupertinoIcons.chat_bubble,
-                    ),
+            (widget.customButton != null)
+              ?
+                widget.customButton!
+              :
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: const [
+                      TemplateButton(
+                        width: 30,
+                        margin: EdgeInsets.only(
+                          right: 10
+                        ),
+                        iconSize: 20,
+                        icon: CupertinoIcons.chat_bubble,
+                      ),
+                      TemplateButton(
+                        width: 30,
+                        margin: EdgeInsets.only(
+                          left: 10
+                        ),
+                        iconSize: 20,
+                        icon: CupertinoIcons.bell,
+                      ),
+                    ],
                   ),
-                  Expanded(
-                    child: TemplateButton(
-                      width: 60,
-                      icon: CupertinoIcons.bell,
-                    ),
-                  ),
-                ],
-              ),
-            )
+                )
           ],
         )
       ),

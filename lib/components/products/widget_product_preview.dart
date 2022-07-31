@@ -1,9 +1,12 @@
 import 'package:devnology/components/widget_custom_image.dart';
+import 'package:devnology/entities/product.dart';
 import 'package:devnology/helpers.dart';
 import 'package:flutter/material.dart';
 
 class ProductPreview extends StatefulWidget {
-  const ProductPreview({Key? key}) : super(key: key);
+  final Product product;
+
+  const ProductPreview({Key? key, required this.product}) : super(key: key);
 
   @override
   ProductPreviewState createState() => ProductPreviewState();
@@ -38,6 +41,8 @@ class ProductPreviewState extends State<ProductPreview> {
               child: Container(
                 margin: const EdgeInsets.only(top: 8),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       "TítuloTítuloTítuloTítuloTítulo TítuloTítuloTítulo Título"
@@ -87,10 +92,15 @@ class _ProductPhoto extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CustomImage(
-      width: 80,
+    return Container(
+      margin: const EdgeInsets.all(0),
+      width: double.infinity,
       height: 80,
-      fit: BoxFit.fill,
+      child: const CustomImage(
+        width: 80,
+        height: 80,
+        fit: BoxFit.fill,
+      )
     );
   }
 

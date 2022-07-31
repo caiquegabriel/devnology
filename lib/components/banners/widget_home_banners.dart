@@ -4,8 +4,9 @@ import 'package:devnology/style.dart';
 import 'package:flutter/material.dart';
 
 class HomeBanners extends StatefulWidget {
+  final EdgeInsets? margin;
 
-  const HomeBanners({Key? key}) : super(key: key);
+  const HomeBanners({Key? key, this.margin}) : super(key: key);
 
   @override
   HomeBannersState createState() => HomeBannersState();
@@ -21,26 +22,18 @@ class HomeBannersState extends State<HomeBanners> {
   @override
   void initState() {
     super.initState();
-
-    WidgetsBinding.instance.addPersistentFrameCallback((_) {
-      _calculateProportion();
-    });
-  }
-
-  /// No figma, a dimensão do banner é de 325px x 180px, para uma tela de 375px
-  /// Mas é necessário adaptar a dimensão de acordo com o tamanho da tela...
-  /// Sendo necessário calcular a proporção e aplicar nas dimensões do banner
-  void _calculateProportion() {
-    double proportion = MediaQuery.of(context).size.width / figmaAppWidth;
-
-    setState(() {
-      _bannerHeight = _bannerHeight * proportion;
-      _bannerWidth = _bannerWidth * proportion;
-    });
   }
 
   @override
   Widget build(BuildContext context) {
+
+    /// No figma, a dimensão do banner é de 325px x 180px, para uma tela de 375px
+    /// Mas é necessário adaptar a dimensão de acordo com o tamanho da tela...
+    /// Sendo necessário calcular a proporção e aplicar nas dimensões do banner
+    double proportion = MediaQuery.of(context).size.width / figmaAppWidth;
+    _bannerHeight = _bannerHeight * proportion;
+    _bannerWidth = _bannerWidth * proportion;
+
     return Container(
       width: double.infinity,
       margin: const EdgeInsets.only(
@@ -48,15 +41,18 @@ class HomeBannersState extends State<HomeBanners> {
       ),
       child: Column(
         children: [
-          const TitleH2(
-            "Latest"
+          TitleH2(
+            "Latest",
+            margin: widget.margin
           ),
           Container(
-            color: Colors.purple,
             width: double.infinity,
-            height: _bannerHeight,
+            height: _bannerHeight + 20,
             child: GridView(
-              padding: const EdgeInsets.all(0),
+              padding: const EdgeInsets.only(
+                bottom: 10,
+                top: 10
+              ),
               physics: const PageScrollPhysics(),
               scrollDirection: Axis.horizontal,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -65,19 +61,21 @@ class HomeBannersState extends State<HomeBanners> {
                 crossAxisSpacing: 10,
                 childAspectRatio: 0.1,
                 /// 15 é o tamanho do banner seguinte que ficará visível.
-                mainAxisExtent: _bannerWidth - 15
+                mainAxisExtent: _bannerWidth
               ),
               children: [
                 CustomBanner(
+                  key: GlobalKey(),
                   width: _bannerWidth,
                   height: _bannerHeight,
                   image: "assets/images/banners/banner_1.png"
                 ),
                 CustomBanner(
+                  key: GlobalKey(),
                   width: _bannerWidth,
                   height: _bannerHeight,
                   image: "assets/images/banners/banner_1.png"
-                ),
+                )
               ],
             )
           )

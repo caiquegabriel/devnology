@@ -24,6 +24,11 @@ const LinearGradient primaryGradient =  LinearGradient(
   ],
 );
 
-
+const BoxShadow ligthShadow = BoxShadow( 
+  color: Color.fromRGBO(0, 0, 0, 0.07),  
+  spreadRadius: 2,  
+  blurRadius: 2,  
+  offset: Offset(0, 0),   
+);
 
 double figmaAppWidth = 375;

@@ -7,7 +7,9 @@ class TitleH2 extends StatefulWidget {
 
   final String text;
 
-  const TitleH2(this.text, {Key? key, this.height}) : super(key: key);
+  final EdgeInsets? margin;
+
+  const TitleH2(this.text, {Key? key, this.height, this.margin}) : super(key: key);
 
   @override
   TitleH2State createState() => TitleH2State();
@@ -19,7 +21,7 @@ class TitleH2State extends State<TitleH2> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(
+      margin: widget.margin ?? const EdgeInsets.only(
         bottom: 10
       ),
       height: widget.height ?? 35,

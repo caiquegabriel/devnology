@@ -1,10 +1,12 @@
 import 'package:devnology/components/products/widget_product_preview.dart';
+import 'package:devnology/entities/product.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CategoryPreviewProducts extends StatefulWidget {
+  final EdgeInsets? margin;
 
-  const CategoryPreviewProducts({Key? key}) : super(key: key);
+  const CategoryPreviewProducts({Key? key, this.margin}) : super(key: key);
 
   @override
   CategoryPreviewProductsState createState() => CategoryPreviewProductsState();
@@ -38,7 +40,7 @@ class CategoryPreviewProductsState extends State<CategoryPreviewProducts> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(0),
+      margin: widget.margin ?? const EdgeInsets.all(0),
       width: double.infinity,
       height: _productHeight + 45,
       child: GridView(
@@ -50,10 +52,16 @@ class CategoryPreviewProductsState extends State<CategoryPreviewProducts> {
           crossAxisSpacing: _distance,
           childAspectRatio: _childAspectRation
         ),
-        children: const [
-          ProductPreview(),
-          ProductPreview(),
-          ProductPreview(),
+        children: [
+          ProductPreview(
+            product: Product(),
+          ),
+          ProductPreview(
+            product: Product(),
+          ),
+          ProductPreview(
+            product: Product(),
+          ),
         ],
       )
     );

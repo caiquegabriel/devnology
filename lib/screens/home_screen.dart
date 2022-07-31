@@ -20,11 +20,16 @@ class HomeScreenState extends State<HomeScreen> with ScreenComponent {
     return content(
       backgroundColor: const Color.fromRGBO(240, 240, 240, 1),
       body: Container(
-        margin: const EdgeInsets.all(0),
         width: double.infinity,
         child: Column(
           children: [
             HomeCategories(
+              padding: const EdgeInsets.only(
+                top: 30,
+                left: 25,
+                right: 25,
+                bottom: 12
+              ),
               categories: [
                 Category(
                   name: "Apparel",
@@ -44,8 +49,19 @@ class HomeScreenState extends State<HomeScreen> with ScreenComponent {
                 ),
               ],
             ),
-            HomeBanners(),
-            CategoryPreviewProducts()
+            HomeBanners(
+              margin: const EdgeInsets.only(
+                left: 25,
+                right: 25,
+                bottom: 10
+              ),
+            ),
+            CategoryPreviewProducts(
+              margin: const EdgeInsets.only(
+                left: 25,
+                right: 25
+              ),
+            )
           ],
         )
       )

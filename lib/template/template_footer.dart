@@ -20,7 +20,7 @@ class TemplateFooterState extends State<TemplateFooter> {
         color: primaryColor
       ),
       child: SafeArea(
-        bottom: false,
+        top: false,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -28,6 +28,7 @@ class TemplateFooterState extends State<TemplateFooter> {
             Expanded(
               child: TemplateButton(
                 width: 50,
+                height: 50,
                 icon: CupertinoIcons.home,
                 text: "Home",
               ),
@@ -35,12 +36,15 @@ class TemplateFooterState extends State<TemplateFooter> {
             Expanded(
               child: TemplateButton(
                 width: 50,
+                height: 50,
                 icon: CupertinoIcons.search,
                 text: "Search",
               ),
             ),
             Expanded(
               child: TemplateButton(
+                width: 50,
+                height: 50,
                 icon: CupertinoIcons.cart,
                 text: "Cart",
               ),
@@ -48,6 +52,7 @@ class TemplateFooterState extends State<TemplateFooter> {
             Expanded(
               child: TemplateButton(
                 width: 50,
+                height: 50,
                 icon: CupertinoIcons.person,
                 text: "Profile",
               ),
@@ -55,6 +60,7 @@ class TemplateFooterState extends State<TemplateFooter> {
             Expanded(
               child: TemplateButton(
                 width: 50,
+                height: 50,
                 icon: CupertinoIcons.bars,
                 text: "More",
               ),

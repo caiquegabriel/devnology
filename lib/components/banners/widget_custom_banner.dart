@@ -1,4 +1,5 @@
 import 'package:devnology/components/widget_custom_image.dart';
+import 'package:devnology/style.dart';
 import 'package:flutter/material.dart';
 
 class CustomBanner extends StatefulWidget {
@@ -19,12 +20,17 @@ class CustomBannerState extends State<CustomBanner> {
     return Container(
       width: widget.width,
       height: widget.height,
-      color: Colors.red,
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
+        border: Border.all(
+          width: 1,
+          color: Colors.black.withOpacity(0.01),
+        ),
+        boxShadow: const [ligthShadow],
         borderRadius: BorderRadius.circular(10)
       ),
       child: CustomImage(
+        local: true,
         image: widget.image,
         fit: BoxFit.fill,
       ),

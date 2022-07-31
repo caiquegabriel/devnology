@@ -39,13 +39,13 @@ mixin ScreenComponent <T extends StatefulWidget > on State<T> {
                 Column(
                   children: <Widget>[
                     const TemplateHeader(),
-                    Expanded( 
+                    Expanded(
                       child: Container(
                         width: double.infinity,
                         height: double.infinity,
-                        padding: const EdgeInsets.all(25),
                         margin: const EdgeInsets.all(0),
-                        child: Column(
+                        child: ListView(
+                          padding: const EdgeInsets.all(0),
                           children: body
                         ), 
                       ) 

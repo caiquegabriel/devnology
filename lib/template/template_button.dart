@@ -1,4 +1,3 @@
-import 'package:devnology/style.dart';
 import 'package:flutter/material.dart';
 
 class TemplateButton extends StatefulWidget {
@@ -17,7 +16,9 @@ class TemplateButton extends StatefulWidget {
 
   final double? height;
 
-  const TemplateButton({Key? key, this.text, this.iconSize, required this.icon, this.onClick, this.count, this.width, this.height}) : super(key: key);
+  final EdgeInsets? margin;
+
+  const TemplateButton({Key? key, this.margin, this.text, this.iconSize, required this.icon, this.onClick, this.count, this.width, this.height}) : super(key: key);
 
   @override
   TemplateButtonState createState() => TemplateButtonState();
@@ -26,53 +27,9 @@ class TemplateButton extends StatefulWidget {
 
 class TemplateButtonState extends State<TemplateButton> {
 
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        if (widget.onClick != null){
-          widget.onClick!();
-        }
-      },
-      child: Container(
-        width: widget.width ?? double.infinity,
-        height: widget.height ?? double.infinity,
-        padding: const EdgeInsets.all(10),
-        child: Stack(
-          children: [
-            Container(
-              margin: const EdgeInsets.all(0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Icon(
-                    widget.icon,
-                    size: widget.iconSize ?? 16,
-                    color: Colors.white,
-                  ),
-                  (widget.text != null)
-                    ?
-                      Container(
-                        margin: const EdgeInsets.only(
-                          top: 6
-                        ),
-                        alignment: Alignment.center,
-                        child: Text(
-                          widget.text!,
-                          style: const TextStyle(
-                            fontSize: 11,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w400
-                          ),
-                        )
-                      )
-                    :
-                      const SizedBox.shrink()
-                ],
-              ),
-            ),
-            (widget.count != true)
+  /**
+   * 
+   * (widget.count != null)
               ?
                 Positioned(
                   child: Container(
@@ -94,9 +51,50 @@ class TemplateButtonState extends State<TemplateButton> {
                 )
               :
                 const SizedBox.shrink()
-          ]
-        )
-      )
+   */
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        if (widget.onClick != null){
+          widget.onClick!();
+        }
+      },
+      child: Container(
+        margin: widget.margin ?? const EdgeInsets.all(0),
+        width: widget.width,
+        height: widget.height,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Icon(
+              widget.icon,
+              size: widget.iconSize ?? 18,
+              color: Colors.white,
+            ),
+            (widget.text != null)
+              ?
+                Container(
+                  margin: const EdgeInsets.only(
+                    top: 6
+                  ),
+                  alignment: Alignment.center,
+                  child: Text(
+                    widget.text!,
+                    style: const TextStyle(
+                      fontSize: 11,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400
+                    ),
+                  )
+                )
+              :
+                const SizedBox.shrink()
+          ],
+        ),
+      ),
     );
   }
 }
