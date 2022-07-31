@@ -15,7 +15,7 @@ class HomeBanners extends StatefulWidget {
 class HomeBannersState extends State<HomeBanners> {
 
 
-  double _bannerHeigth = 180;
+  double _bannerHeight = 180;
   double _bannerWidth = 325;
 
   @override
@@ -34,7 +34,7 @@ class HomeBannersState extends State<HomeBanners> {
     double proportion = MediaQuery.of(context).size.width / figmaAppWidth;
 
     setState(() {
-      _bannerHeigth = _bannerHeigth * proportion;
+      _bannerHeight = _bannerHeight * proportion;
       _bannerWidth = _bannerWidth * proportion;
     });
   }
@@ -54,7 +54,7 @@ class HomeBannersState extends State<HomeBanners> {
           Container(
             color: Colors.purple,
             width: double.infinity,
-            height: _bannerHeigth,
+            height: _bannerHeight,
             child: GridView(
               padding: const EdgeInsets.all(0),
               physics: const PageScrollPhysics(),
@@ -67,13 +67,17 @@ class HomeBannersState extends State<HomeBanners> {
                 /// 15 é o tamanho do banner seguinte que ficará visível.
                 mainAxisExtent: _bannerWidth - 15
               ),
-              children: const [
-                CustomBanner(),
-                CustomBanner(),
-                CustomBanner(),
-                CustomBanner(),
-                CustomBanner(),
-                CustomBanner(),
+              children: [
+                CustomBanner(
+                  width: _bannerWidth,
+                  height: _bannerHeight,
+                  image: "assets/images/banners/banner_1.png"
+                ),
+                CustomBanner(
+                  width: _bannerWidth,
+                  height: _bannerHeight,
+                  image: "assets/images/banners/banner_1.png"
+                ),
               ],
             )
           )

@@ -7,11 +7,17 @@ class TemplateButton extends StatefulWidget {
 
   final IconData icon;
 
+  final double? iconSize;
+
   final Function? onClick;
 
   final bool? count;
 
-  const TemplateButton({Key? key, this.text, required this.icon, this.onClick, this.count}) : super(key: key);
+  final double? width;
+
+  final double? height;
+
+  const TemplateButton({Key? key, this.text, this.iconSize, required this.icon, this.onClick, this.count, this.width, this.height}) : super(key: key);
 
   @override
   TemplateButtonState createState() => TemplateButtonState();
@@ -29,19 +35,40 @@ class TemplateButtonState extends State<TemplateButton> {
         }
       },
       child: Container(
+        width: widget.width ?? double.infinity,
+        height: widget.height ?? double.infinity,
         padding: const EdgeInsets.all(10),
-        width: double.infinity,
-        height: 200,
-        decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.85)
-        ),
         child: Stack(
           children: [
             Container(
               margin: const EdgeInsets.all(0),
               child: Column(
-                children: const [
-
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Icon(
+                    widget.icon,
+                    size: widget.iconSize ?? 16,
+                    color: Colors.white,
+                  ),
+                  (widget.text != null)
+                    ?
+                      Container(
+                        margin: const EdgeInsets.only(
+                          top: 6
+                        ),
+                        alignment: Alignment.center,
+                        child: Text(
+                          widget.text!,
+                          style: const TextStyle(
+                            fontSize: 11,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w400
+                          ),
+                        )
+                      )
+                    :
+                      const SizedBox.shrink()
                 ],
               ),
             ),

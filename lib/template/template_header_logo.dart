@@ -1,5 +1,4 @@
 import 'package:devnology/components/widget_custom_image.dart';
-import 'package:devnology/style.dart';
 import 'package:flutter/material.dart';
 
 class TemplateHeaderLogo extends StatefulWidget {

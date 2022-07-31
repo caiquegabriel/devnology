@@ -9,7 +9,8 @@ mixin ScreenComponent <T extends StatefulWidget > on State<T> {
       body,
       Color? backgroundColor,
       bool resizeToAvoidBottomInset = false,
-      bool showFooter = true
+      bool showFooter = true,
+      Widget? customFooter
     }
   ){
 
@@ -49,7 +50,11 @@ mixin ScreenComponent <T extends StatefulWidget > on State<T> {
                         ), 
                       ) 
                     ),
-                    const TemplateFooter()
+                    (customFooter == null)
+                      ?
+                        const TemplateFooter()
+                      :
+                        customFooter
                   ]
                 ),
               ]

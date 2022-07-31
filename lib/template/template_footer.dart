@@ -1,5 +1,6 @@
 import 'package:devnology/style.dart';
-import 'package:flutter/material.dart';
+import 'package:devnology/template/template_button.dart';
+import 'package:flutter/cupertino.dart';
 
 class TemplateFooter extends StatefulWidget {
   const TemplateFooter({Key? key}) : super(key: key);
@@ -18,9 +19,48 @@ class TemplateFooterState extends State<TemplateFooter> {
       decoration: const BoxDecoration(
         color: primaryColor
       ),
-      child: const SafeArea(
+      child: SafeArea(
         bottom: false,
-        child: Text("..."),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: const [
+            Expanded(
+              child: TemplateButton(
+                width: 50,
+                icon: CupertinoIcons.home,
+                text: "Home",
+              ),
+            ),
+            Expanded(
+              child: TemplateButton(
+                width: 50,
+                icon: CupertinoIcons.search,
+                text: "Search",
+              ),
+            ),
+            Expanded(
+              child: TemplateButton(
+                icon: CupertinoIcons.cart,
+                text: "Cart",
+              ),
+            ),
+            Expanded(
+              child: TemplateButton(
+                width: 50,
+                icon: CupertinoIcons.person,
+                text: "Profile",
+              ),
+            ),
+            Expanded(
+              child: TemplateButton(
+                width: 50,
+                icon: CupertinoIcons.bars,
+                text: "More",
+              ),
+            ),
+          ],
+        )
       ),
     );
   }
