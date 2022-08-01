@@ -1,3 +1,4 @@
+import 'package:devnology/style.dart';
 import 'package:flutter/material.dart';
 
 class TemplateButton extends StatefulWidget {
@@ -8,9 +9,11 @@ class TemplateButton extends StatefulWidget {
 
   final double? iconSize;
 
+  final double? fontSize;
+
   final Function? onClick;
 
-  final bool? count;
+  final int? count;
 
   final double? width;
 
@@ -18,7 +21,7 @@ class TemplateButton extends StatefulWidget {
 
   final EdgeInsets? margin;
 
-  const TemplateButton({Key? key, this.margin, this.text, this.iconSize, required this.icon, this.onClick, this.count, this.width, this.height}) : super(key: key);
+  const TemplateButton({Key? key, this.margin, this.text, this.fontSize, this.iconSize, required this.icon, this.onClick, this.count, this.width, this.height}) : super(key: key);
 
   @override
   TemplateButtonState createState() => TemplateButtonState();
@@ -27,31 +30,15 @@ class TemplateButton extends StatefulWidget {
 
 class TemplateButtonState extends State<TemplateButton> {
 
-  /**
-   * 
-   * (widget.count != null)
-              ?
-                Positioned(
-                  child: Container(
-                    width: 13,
-                    height: 13,
-                    clipBehavior: Clip.antiAlias,
-                    decoration: BoxDecoration(
-                      color: countBadgeColor,
-                      borderRadius: BorderRadius.circular(100)
-                    ),
-                    child: Text(
-                      widget.count!.toString(),
-                      style: const TextStyle(
-                        fontSize: 9,
-                        fontWeight: FontWeight.w700
-                      ),
-                    ),
-                  )
-                )
-              :
-                const SizedBox.shrink()
-   */
+  bool _current = false;
+
+  void currentButton(bool current){  
+    if(!mounted) return;  
+    
+    setState((){ 
+      _current = current;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,10 +56,45 @@ class TemplateButtonState extends State<TemplateButton> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Icon(
-              widget.icon,
-              size: widget.iconSize ?? 18,
-              color: Colors.white,
+            Container(
+              child: Stack(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(3),
+                    child: Icon(
+                      widget.icon,
+                      size: widget.iconSize ?? 18,
+                      color: _current == true ? countBadgeColor : Colors.white,
+                    ),
+                  ),
+                  (widget.count != null)
+                    ?
+                      Positioned(
+                        right: 0,
+                        bottom: 0,
+                        child: Container(
+                          width: 13,
+                          height: 13,
+                          alignment: Alignment.center,
+                          clipBehavior: Clip.antiAlias,
+                          decoration: BoxDecoration(
+                            color: countBadgeColor,
+                            borderRadius: BorderRadius.circular(100)
+                          ),
+                          child: Text(
+                            widget.count!.toString(),
+                            style: const TextStyle(
+                              fontSize: 9,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white
+                            ),
+                          ),
+                        )
+                      )
+                    :
+                      const SizedBox.shrink()
+                ]
+              )
             ),
             (widget.text != null)
               ?
@@ -83,9 +105,9 @@ class TemplateButtonState extends State<TemplateButton> {
                   alignment: Alignment.center,
                   child: Text(
                     widget.text!,
-                    style: const TextStyle(
-                      fontSize: 11,
-                      color: Colors.white,
+                    style: TextStyle(
+                      fontSize: widget.fontSize ?? 11,
+                      color: _current == true ? countBadgeColor : Colors.white,
                       fontWeight: FontWeight.w400
                     ),
                   )

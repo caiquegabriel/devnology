@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'dart:io'; 
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
  
 /*
   Chamar uma rota. Usamos ele para evitar que ele chame a rota atual
@@ -133,4 +134,10 @@ bool isUrl(dynamic value) {
   if( value.runtimeType.toString() != 'String' ) return false;
 
   return Uri.tryParse(value)?.hasAbsolutePath ?? false;
+}
+
+String priceFormat(double price) {
+  var numberFormat = NumberFormat("#,##0.00", "en_US");
+
+  return numberFormat.format(price);
 }

@@ -36,7 +36,9 @@ class ProductPreviewState extends State<ProductPreview> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const _ProductPhoto(),
+            _ProductPhoto(
+              photo: widget.product.thumbnail,
+            ),
             Expanded(
               child: Container(
                 margin: const EdgeInsets.only(top: 8),
@@ -45,27 +47,31 @@ class ProductPreviewState extends State<ProductPreview> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "TítuloTítuloTítuloTítuloTítulo TítuloTítuloTítulo Título"
-                      ,
+                      widget.product.name,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 9,
                         color: Colors.black,
                         fontWeight: FontWeight.w200,
                         height: 1.1
                       ),
                     ),
-                    Text(
-                      "R\$ 10.000,33",
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontSize: 11,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        height: 1.3
+                    Container(
+                      margin: const EdgeInsets.only(
+                        top: 4
                       ),
+                      child: Text(
+                        "R\$ ${priceFormat(widget.product.price)}",
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          fontSize: 11,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          height: 1.3
+                        ),
+                      )
                     )
                   ],
                 ),
@@ -88,7 +94,9 @@ class ProductPreviewState extends State<ProductPreview> {
 
 class _ProductPhoto extends StatelessWidget {
 
-  const _ProductPhoto ({Key? key}) : super(key: key);
+  final String photo;
+
+  const _ProductPhoto ({Key? key, required this.photo}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +104,9 @@ class _ProductPhoto extends StatelessWidget {
       margin: const EdgeInsets.all(0),
       width: double.infinity,
       height: 80,
-      child: const CustomImage(
+      child: CustomImage(
+        image: photo,
+        local: true,
         width: 80,
         height: 80,
         fit: BoxFit.fill,

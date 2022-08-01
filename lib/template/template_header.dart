@@ -34,10 +34,13 @@ class TemplateHeaderState extends State<TemplateHeader> {
           children: [
             (widget.showBackButton == true)
               ?
-                const TemplateButton(
-                  width: 60,
+                TemplateButton(
+                  width: 15,
                   iconSize: 20,
                   icon: CupertinoIcons.chevron_back,
+                  onClick: () {
+                    Navigator.of(context).pop();
+                  },
                 )
               :
                 const SizedBox.shrink(),
@@ -51,7 +54,7 @@ class TemplateHeaderState extends State<TemplateHeader> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: const [
                       TemplateButton(
-                        width: 30,
+                        width: 20,
                         margin: EdgeInsets.only(
                           right: 10
                         ),
@@ -59,7 +62,7 @@ class TemplateHeaderState extends State<TemplateHeader> {
                         icon: CupertinoIcons.chat_bubble,
                       ),
                       TemplateButton(
-                        width: 30,
+                        width: 20,
                         margin: EdgeInsets.only(
                           left: 10
                         ),

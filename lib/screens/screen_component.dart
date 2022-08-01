@@ -1,3 +1,4 @@
+import 'package:devnology/template/template_button.dart';
 import 'package:devnology/template/template_footer.dart';
 import 'package:devnology/template/template_header.dart';
 import 'package:flutter/material.dart';
@@ -7,10 +8,12 @@ mixin ScreenComponent <T extends StatefulWidget > on State<T> {
   Widget content(
     {
       body,
+      bool? showBackButton,
       Color? backgroundColor,
       bool resizeToAvoidBottomInset = false,
       bool showFooter = true,
-      Widget? customFooter
+      Widget? customFooter,
+      TemplateButton? customHeaderButton,
     }
   ){
 
@@ -38,7 +41,10 @@ mixin ScreenComponent <T extends StatefulWidget > on State<T> {
               children: [
                 Column(
                   children: <Widget>[
-                    const TemplateHeader(),
+                    TemplateHeader(
+                      customButton: customHeaderButton,
+                      showBackButton: showBackButton
+                    ),
                     Expanded(
                       child: Container(
                         width: double.infinity,

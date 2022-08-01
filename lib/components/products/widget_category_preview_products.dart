@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 
 class CategoryPreviewProducts extends StatefulWidget {
   final EdgeInsets? margin;
+  
+  final List<Product> products;
 
-  const CategoryPreviewProducts({Key? key, this.margin}) : super(key: key);
+  const CategoryPreviewProducts({Key? key, this.margin, required this.products}) : super(key: key);
 
   @override
   CategoryPreviewProductsState createState() => CategoryPreviewProductsState();
@@ -17,6 +19,8 @@ class CategoryPreviewProductsState extends State<CategoryPreviewProducts> {
   double _childAspectRation = 10;
   final double _distance = 11;
   double _productHeight = 0;
+
+  List<ProductPreview> _productsPreview = [];
 
   @override
   void initState() {
@@ -35,6 +39,22 @@ class CategoryPreviewProductsState extends State<CategoryPreviewProducts> {
         _productHeight = productHeight;
       });
     });
+
+    _loadProducts();
+  }
+
+  void _loadProducts() {
+    widget.products.forEach((Product product) {
+      _productsPreview.add(
+        ProductPreview(
+          product: product
+        )
+      );
+    });
+
+    setState(() {
+      _productsPreview = _productsPreview;
+    });
   }
 
   @override
@@ -52,17 +72,7 @@ class CategoryPreviewProductsState extends State<CategoryPreviewProducts> {
           crossAxisSpacing: _distance,
           childAspectRatio: _childAspectRation
         ),
-        children: [
-          ProductPreview(
-            product: Product(),
-          ),
-          ProductPreview(
-            product: Product(),
-          ),
-          ProductPreview(
-            product: Product(),
-          ),
-        ],
+        children: _productsPreview
       )
     );
   }
