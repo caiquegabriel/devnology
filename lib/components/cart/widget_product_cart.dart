@@ -127,7 +127,7 @@ class _ProductCartActionsState extends State<_ProductCartActions> {
   }
 
   void remove() {
-    if(!mounted || count <= 1) return;
+    if(!mounted || count <= 0) return;
     setState(() {
       count -=1;
     });

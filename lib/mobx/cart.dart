@@ -9,6 +9,9 @@ abstract class CartBase with Store {
   @observable
   List<Product> cartItems = ObservableList<Product>();
 
+  @observable
+  double value = 0.0;
+
   int countItems() {
     return cartItems.length;
   }
@@ -16,9 +19,6 @@ abstract class CartBase with Store {
   List<Product> getItems() {
     return cartItems;
   }
-
-  @observable
-  double value = 0.0;
 
   @action
   void addItem(Product product) {
@@ -36,16 +36,21 @@ abstract class CartBase with Store {
   @action
   void removeItem(Product product) {
     int count = 0;
+    Product? removeProduct;
     cartItems.forEach((p) {
       if (p.id == product.id) {
-        if (p.quantity > 1) {
+        if (p.quantity > 0) {
           p.quantity = p.quantity - 1;
-        } else {
-          cartItems.removeAt(count);
+        }
+        if (p.quantity == 0) {
+          removeProduct = p;
         }
       }
       count+=1;
     });
+    if (removeProduct != null) {
+      cartItems.remove(removeProduct);
+    }
     calculeTotalValue();
   }
 

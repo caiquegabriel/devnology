@@ -23,7 +23,7 @@ class ProductFooterState extends State<ProductFooter> {
       child: Container(
         padding: const EdgeInsets.all(10),
         width: double.infinity,
-        height: MediaQuery.of(context).padding.bottom + 86,
+        height: (widget.safearea == true ? MediaQuery.of(context).padding.bottom  : 0) + 86,
         decoration: const BoxDecoration(
           color: primaryColorLigther
         ),

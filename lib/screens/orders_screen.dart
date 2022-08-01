@@ -36,9 +36,11 @@ class OrdersScreenState extends State<OrdersScreen> with ScreenComponent, Automa
   }
 
   void _loadCartProducts() {
+    _productsCart = [];
     cart.getItems().forEach((Product product) {
       _productsCart.add(
         ProductCart(
+          key: GlobalKey(),
           product: product,
           count: product.quantity
         )
@@ -67,10 +69,20 @@ class OrdersScreenState extends State<OrdersScreen> with ScreenComponent, Automa
                 bottom: 20
               )
             ),
-          ] + _productsCart,
+          ] + [
+            Observer(
+              builder: (i) {
+                _loadCartProducts();
+                return Column(
+                  children: _productsCart
+                );
+              },
+            )
+          ]
         )
       ),
       betweenFooter: ProductFooter(
+        safearea: false,
         children: [
           Container(
             margin: const EdgeInsets.all(0),

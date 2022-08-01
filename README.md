@@ -1,7 +1,11 @@
 # devnology
 
-A new Flutter project.
+Projeto teste para vaga de Dev Flutter.
+O projeto foi desenvolvido, inicialmente, para iOS, por isso não pude disponibilizar um .apk,
+mas tenho uma apresentação do APP rodando no meu aparelho (iPhone XR)
 
+## Apresentação
+https://www.caiquegabriel.com/devnology/
 ## Getting Started
 
 This project is a starting point for a Flutter application.
