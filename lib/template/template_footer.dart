@@ -105,7 +105,7 @@ class TemplateFooterState extends State<TemplateFooter> {
                 fontSize: 11 * _proportion,
                 count: 2,
                 onClick: () {
-                  navigatorPushNamed(context, '/cart');
+                  navigatorPushNamed(context, '/orders');
                 },
               ),
             ),

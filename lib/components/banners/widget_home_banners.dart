@@ -1,5 +1,6 @@
 import 'package:devnology/components/banners/widget_custom_banner.dart';
 import 'package:devnology/components/titles/widget_title_h2.dart';
+import 'package:devnology/helpers.dart';
 import 'package:devnology/style.dart';
 import 'package:flutter/material.dart';
 
@@ -30,9 +31,8 @@ class HomeBannersState extends State<HomeBanners> {
     /// No figma, a dimensão do banner é de 325px x 180px, para uma tela de 375px
     /// Mas é necessário adaptar a dimensão de acordo com o tamanho da tela...
     /// Sendo necessário calcular a proporção e aplicar nas dimensões do banner
-    double proportion = MediaQuery.of(context).size.width / figmaAppWidth;
-    _bannerHeight = _bannerHeight * proportion;
-    _bannerWidth = _bannerWidth * proportion;
+    _bannerHeight = _bannerHeight * proportion(context);
+    _bannerWidth = _bannerWidth * proportion(context);
 
     return Container(
       width: double.infinity,

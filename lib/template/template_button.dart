@@ -65,7 +65,7 @@ class TemplateButtonState extends State<TemplateButton> {
                     child: Icon(
                       widget.icon,
                       size: widget.iconSize ?? 18,
-                      color: _current == true ? countBadgeColor : Colors.white,
+                      color: _current == true ? secondaryColor : Colors.white,
                     ),
                   ),
                   (widget.count != null)
@@ -79,7 +79,7 @@ class TemplateButtonState extends State<TemplateButton> {
                           alignment: Alignment.center,
                           clipBehavior: Clip.antiAlias,
                           decoration: BoxDecoration(
-                            color: countBadgeColor,
+                            color: secondaryColor,
                             borderRadius: BorderRadius.circular(100)
                           ),
                           child: Text(
@@ -108,7 +108,7 @@ class TemplateButtonState extends State<TemplateButton> {
                     widget.text!,
                     style: TextStyle(
                       fontSize: widget.fontSize ?? 11,
-                      color: _current == true ? countBadgeColor : Colors.white,
+                      color: _current == true ? secondaryColor : Colors.white,
                       fontWeight: FontWeight.w400
                     ),
                   )

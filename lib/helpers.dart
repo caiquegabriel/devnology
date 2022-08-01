@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:devnology/style.dart';
 import 'package:flutter/material.dart'; 
 import 'dart:io'; 
 import 'package:http/http.dart' as http;
@@ -140,4 +141,11 @@ String priceFormat(double price) {
   var numberFormat = NumberFormat("#,##0.00", "en_US");
 
   return "\$ ${numberFormat.format(price)}";
+}
+
+double proportion(context) {
+  /// No figma, o layout foi feito com base na tela de 375px
+  /// Essa funcao retorna o multiplicador pra manter a proporcao
+  double proportion = MediaQuery.of(context).size.width / figmaAppWidth;
+  return proportion;
 }

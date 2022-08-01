@@ -21,7 +21,9 @@ class ButtonCircled extends StatefulWidget {
 
   final Color? backgroundColor;
 
-  const ButtonCircled({Key? key, this.textColor, this.backgroundColor, this.text, this.iconSize, required this.icon, this.onClick, this.count, this.width, this.height}) : super(key: key);
+  final double? fontSize;
+
+  const ButtonCircled({Key? key, this.fontSize, this.textColor, this.backgroundColor, this.text, this.iconSize, required this.icon, this.onClick, this.count, this.width, this.height}) : super(key: key);
 
   @override
   ButtonCircledState createState() => ButtonCircledState();
@@ -47,7 +49,7 @@ class ButtonCircledState extends State<ButtonCircled> {
           right: 20
         ),
         width: widget.width ?? double.infinity,
-        height: 50,
+        height: widget.height ?? 50,
         decoration: BoxDecoration(
           color: widget.backgroundColor ?? Colors.white,
           borderRadius: BorderRadius.circular(100)
@@ -63,7 +65,7 @@ class ButtonCircledState extends State<ButtonCircled> {
                   child: Text(
                     widget.text!,
                     style: TextStyle(
-                      fontSize: 12,
+                      fontSize: widget.fontSize ?? 12,
                       color: widget.textColor ?? Colors.white,
                       fontWeight: FontWeight.bold
                     ),

@@ -67,7 +67,10 @@ class OrdersScreenState extends State<OrdersScreen> with ScreenComponent {
             text: "CHECKOUT",
             backgroundColor: primaryColor,
             textColor: Colors.white,
-            icon: CupertinoIcons.chevron_right
+            icon: CupertinoIcons.chevron_right,
+            onClick: () {
+              navigatorPushNamed(context, '/checkout');
+            },
           ),
         ]
       )
