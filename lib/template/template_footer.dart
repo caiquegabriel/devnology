@@ -25,7 +25,7 @@ class TemplateFooterState extends State<TemplateFooter> {
 
     _btnsState['/'] = _btnHome;
     _btnsState['/home'] = _btnHome;
-    _btnsState['/cart'] = _btnCart;
+    _btnsState['/orders'] = _btnCart;
  
     WidgetsBinding.instance.addPostFrameCallback((_) {
       var currentRoute = ModalRoute.of(context);
