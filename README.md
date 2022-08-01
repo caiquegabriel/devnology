@@ -5,7 +5,7 @@ O projeto foi desenvolvido, inicialmente, para iOS, por isso não pude disponibi
 mas tenho uma apresentação do APP rodando no meu aparelho (iPhone XR)
 
 ## Apresentação
-https://www.caiquegabriel.com/devnology/
+http://caiquegabriel.com/devnology/Devnology_demonstracao.MP4
 ## Getting Started
 
 This project is a starting point for a Flutter application.
