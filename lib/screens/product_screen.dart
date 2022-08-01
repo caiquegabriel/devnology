@@ -7,8 +7,7 @@ import 'package:devnology/style.dart';
 import 'package:devnology/template/template_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import '../components/products/widget_product_actions.dart';
+import '../components/products/widget_product_footer.dart';
 
 class ProductScreen extends StatefulWidget {
   final Product product;
@@ -51,8 +50,9 @@ class ProductScreenState extends State<ProductScreen> with ScreenComponent {
           ],
         ),
       ),
-      customFooter: const ProductActions(
-        buttons: [
+      customFooter: const ProductFooter(
+        safearea: true,
+        children: [
           ButtonCircled(
             width: 140,
             height: 40,

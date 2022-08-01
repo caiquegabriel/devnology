@@ -1,26 +1,27 @@
-import 'package:devnology/components/buttons/widget_button_circled.dart';
 import 'package:devnology/style.dart';
 import 'package:flutter/material.dart';
 
-class ProductActions extends StatefulWidget {
+class ProductFooter extends StatefulWidget {
 
-  final List<ButtonCircled> buttons;
+  final List<Widget> children;
 
-  const ProductActions({Key? key, required this.buttons}) : super(key: key);
+  final bool? safearea;
+
+  const ProductFooter({Key? key, required this.children, this.safearea}) : super(key: key);
 
   @override
-  ProductActionsState createState() => ProductActionsState();
+  ProductFooterState createState() => ProductFooterState();
 
 }
 
-class ProductActionsState extends State<ProductActions> {
+class ProductFooterState extends State<ProductFooter> {
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {},
       child: Container(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(10),
         width: double.infinity,
         height: MediaQuery.of(context).padding.bottom + 86,
         decoration: const BoxDecoration(
@@ -28,9 +29,11 @@ class ProductActionsState extends State<ProductActions> {
         ),
         child: SafeArea(
           top: false,
+          bottom: widget.safearea == true ? true : false,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: widget.buttons
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: widget.children
           )
         )
       )

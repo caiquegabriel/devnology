@@ -14,6 +14,8 @@ mixin ScreenComponent <T extends StatefulWidget > on State<T> {
       bool showFooter = true,
       Widget? customFooter,
       TemplateButton? customHeaderButton,
+      List<Widget> positioned = const [],
+      Widget? betweenFooter
     }
   ){
 
@@ -38,7 +40,7 @@ mixin ScreenComponent <T extends StatefulWidget > on State<T> {
             height: double.infinity,
             color: backgroundColor,
             child: Stack(
-              children: [
+              children: <Widget>[
                 Column(
                   children: <Widget>[
                     TemplateHeader(
@@ -56,11 +58,16 @@ mixin ScreenComponent <T extends StatefulWidget > on State<T> {
                         ), 
                       ) 
                     ),
+                    (betweenFooter != null)
+                      ?
+                        betweenFooter
+                      :
+                        const SizedBox.shrink(),
                     (customFooter == null)
                       ?
                         const TemplateFooter()
                       :
-                        customFooter
+                        customFooter,
                   ]
                 ),
               ]

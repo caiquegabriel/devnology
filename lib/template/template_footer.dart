@@ -79,6 +79,9 @@ class TemplateFooterState extends State<TemplateFooter> {
                 key: _btnHome,
                 iconSize: 18 * _proportion,
                 fontSize: 11 * _proportion,
+                onClick: () {
+                  navigatorPushNamed(context, '/');
+                },
               ),
             ),
             Expanded(
