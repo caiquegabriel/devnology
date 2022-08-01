@@ -18,7 +18,13 @@ class ProductPreviewState extends State<ProductPreview> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        navigatorPushNamed(context, '/product');
+        navigatorPushNamed(
+          context,
+          '/product',
+          arguments: {
+            'product' : widget.product
+          }
+        );
       },
       child: Container(
         width: double.infinity,
@@ -62,7 +68,7 @@ class ProductPreviewState extends State<ProductPreview> {
                         top: 4
                       ),
                       child: Text(
-                        "R\$ ${priceFormat(widget.product.price)}",
+                        priceFormat(widget.product.price),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(

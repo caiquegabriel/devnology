@@ -139,5 +139,5 @@ bool isUrl(dynamic value) {
 String priceFormat(double price) {
   var numberFormat = NumberFormat("#,##0.00", "en_US");
 
-  return numberFormat.format(price);
+  return "\$ ${numberFormat.format(price)}";
 }

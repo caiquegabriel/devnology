@@ -1,5 +1,3 @@
-import 'package:devnology/components/products/widget_product_actions.dart';
-import 'package:devnology/entities/product.dart';
 import 'package:devnology/screens/screen_component.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -30,9 +28,6 @@ class CheckoutScreenState extends State<CheckoutScreen> with ScreenComponent {
           ],
         )
       ),
-      customFooter: ProductActions(
-        product: Product()
-      )
     );
   }
 }

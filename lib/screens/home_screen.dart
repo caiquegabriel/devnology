@@ -50,8 +50,8 @@ class HomeScreenState extends State<HomeScreen> with ScreenComponent {
                 ),
               ],
             ),
-            HomeBanners(
-              margin: const EdgeInsets.only(
+            const HomeBanners(
+              margin: EdgeInsets.only(
                 left: 25,
                 right: 25
               ),

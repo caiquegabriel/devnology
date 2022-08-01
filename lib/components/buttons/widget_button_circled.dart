@@ -40,6 +40,12 @@ class ButtonCircledState extends State<ButtonCircled> {
       },
       child: Container(
         margin: const EdgeInsets.all(0),
+        padding: const EdgeInsets.only(
+          bottom: 10,
+          top: 10,
+          left: 20,
+          right: 20
+        ),
         width: widget.width ?? double.infinity,
         height: 50,
         decoration: BoxDecoration(
@@ -47,7 +53,7 @@ class ButtonCircledState extends State<ButtonCircled> {
           borderRadius: BorderRadius.circular(100)
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             (widget.text != null)
@@ -68,7 +74,7 @@ class ButtonCircledState extends State<ButtonCircled> {
               Icon(
                 widget.icon,
                 size: widget.iconSize ?? 16,
-                color: Colors.white,
+                color: widget.textColor ?? Colors.white,
               ),
           ],
         ),
