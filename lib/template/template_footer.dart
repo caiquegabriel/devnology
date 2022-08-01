@@ -1,7 +1,9 @@
 import 'package:devnology/helpers.dart';
+import 'package:devnology/mobx/cart.dart';
 import 'package:devnology/style.dart';
 import 'package:devnology/template/template_button.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class TemplateFooter extends StatefulWidget {
   const TemplateFooter({Key? key}) : super(key: key);
@@ -15,9 +17,11 @@ class TemplateFooterState extends State<TemplateFooter> {
   final GlobalKey<TemplateButtonState> _btnCart = GlobalKey();
   final GlobalKey<TemplateButtonState> _btnHome = GlobalKey();
 
-  Map<String, GlobalKey<TemplateButtonState>> _btnsState = {};
+  final Map<String, GlobalKey<TemplateButtonState>> _btnsState = {};
 
   double _proportion = 1;
+
+  Cart cart = Modular.get<Cart>();
 
   @override
   void initState(){ 
@@ -103,7 +107,7 @@ class TemplateFooterState extends State<TemplateFooter> {
                 key: _btnCart,
                 iconSize: 18 * _proportion,
                 fontSize: 11 * _proportion,
-                count: 2,
+                count: cart.countItems(),
                 onClick: () {
                   navigatorPushNamed(context, '/orders');
                 },

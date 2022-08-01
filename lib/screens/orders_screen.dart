@@ -4,10 +4,12 @@ import 'package:devnology/components/products/widget_product_footer.dart';
 import 'package:devnology/components/titles/widget_title_h2.dart';
 import 'package:devnology/entities/product.dart';
 import 'package:devnology/helpers.dart';
+import 'package:devnology/mobx/cart.dart';
 import 'package:devnology/screens/screen_component.dart';
 import 'package:devnology/style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class OrdersScreen extends StatefulWidget {
   const OrdersScreen({Key? key}) : super(key: key);
@@ -16,10 +18,37 @@ class OrdersScreen extends StatefulWidget {
   OrdersScreenState createState() => OrdersScreenState();
 }
 
-class OrdersScreenState extends State<OrdersScreen> with ScreenComponent {
+class OrdersScreenState extends State<OrdersScreen> with ScreenComponent, AutomaticKeepAliveClientMixin {  
+ 
+  @override
+  bool get wantKeepAlive => true;
+
+  Cart cart = Modular.get<Cart>();
+
+  List<ProductCart> _productsCart = [];
+
+  @override
+  void initState() {
+    super.initState();
+
+    _loadCartProducts();
+  }
+
+  void _loadCartProducts() {
+    cart.getItems().forEach((Product product) {
+      _productsCart.add(
+        ProductCart(
+          product: product,
+          count: product.quantity
+        )
+      );
+    });
+  }
   
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     return content(
       backgroundColor: Colors.white,
       body: Container(
@@ -30,42 +59,25 @@ class OrdersScreenState extends State<OrdersScreen> with ScreenComponent {
         ),
         width: double.infinity,
         child: Column(
-          children: [
-            const TitleH2(
+          children: <Widget>[
+            TitleH2(
               "Cart",
               margin: EdgeInsets.only(
                 bottom: 20
               )
             ),
-            ProductCart(
-              count: 1,
-              product: Product(
-                thumbnail: "assets/images/products/3000222362_PRD_1500_1 1(1).png",
-                name: "Lenovo 15.6' ThinkPad P15s Gen 1",
-                price: 1519.80,
-                description: "1.8 GHz Intel Core i7-10510U Quad-Core Processor \n 16GB of DDR4 RAM | 512GB SSD \n 15.6' 1920 x 1080 IPS Display \n NVIDIA Quadro P520 \n Windows 10 Pro 64-Bit Edition \n 1.8 GHz Intel Core i7-10510U Quad-Core Processor \n 16GB of DDR4 RAM | 512GB SSD \n 15.6' 1920 x 1080 IPS Display \n NVIDIA Quadro P520"
-              ),
-            ),
-            ProductCart(
-              count: 1,
-              product: Product(
-                thumbnail: "assets/images/products/ideapad-flex-i5-hero-subseries-br 1(1).png",
-                name: "Notebook Lenovo 2 em 1",
-                price: 4699.80,
-                description: "1.8 GHz Intel Core i7-10510U Quad-Core Processor \n 16GB of DDR4 RAM | 512GB SSD \n 15.6' 1920 x 1080 IPS Display \n NVIDIA Quadro P520 \n Windows 10 Pro 64-Bit Edition \n 1.8 GHz Intel Core i7-10510U Quad-Core Processor \n 16GB of DDR4 RAM | 512GB SSD \n 15.6' 1920 x 1080 IPS Display \n NVIDIA Quadro P520"
-              ),
-            ),
-          ],
+          ] + _productsCart,
         )
       ),
       betweenFooter: ProductFooter(
         children: [
           Container(
+            margin: const EdgeInsets.all(0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   "Total",
                   style: TextStyle(
                     fontSize: 16,
@@ -75,7 +87,7 @@ class OrdersScreenState extends State<OrdersScreen> with ScreenComponent {
                 ),
                 Text(
                   priceFormat(12222.90),
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.w700,
                     color: Colors.white

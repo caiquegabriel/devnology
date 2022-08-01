@@ -52,8 +52,8 @@ class ProductCartState extends State<ProductCart> {
                         widget.product.name,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          fontSize: 11,
+                        style: TextStyle(
+                          fontSize: 11 * proportion(context),
                           color: Colors.black,
                           fontWeight: FontWeight.w400,
                           height: 1.1
@@ -67,8 +67,8 @@ class ProductCartState extends State<ProductCart> {
                           priceFormat(widget.product.price),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            fontSize: 14,
+                          style: TextStyle(
+                            fontSize: 14 * proportion(context),
                             color: Colors.black,
                             fontWeight: FontWeight.w700,
                             height: 1.3
@@ -100,6 +100,23 @@ class _ProductCartActions extends StatefulWidget {
 }
 
 class _ProductCartActionsState extends State<_ProductCartActions> {
+
+  int count = 0;
+
+  void add() {
+    if(!mounted) return;
+    setState(() {
+      count +=1;
+    });
+  }
+
+  void remove() {
+    if(!mounted || count <= 1) return;
+    setState(() {
+      count -=1;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -110,15 +127,16 @@ class _ProductCartActionsState extends State<_ProductCartActions> {
       height: 30,
       child: Row(
         children: [
-          const ButtonCircled(
-            width: 15,
-            height: 15,
-            padding: EdgeInsets.all(0),
+          ButtonCircled(
+            onClick: remove,
+            width: 15 * proportion(context),
+            height: 15 * proportion(context),
+            padding: const EdgeInsets.all(0),
             backgroundColor: primaryColor,
             textColor: Colors.white,
-            iconSize: 12,
+            iconSize: 12 * proportion(context),
             mainAxisAlignment: MainAxisAlignment.center,
-            icon: CupertinoIcons.add,
+            icon: CupertinoIcons.minus,
           ),
           Container(
             margin: const EdgeInsets.only(
@@ -126,18 +144,19 @@ class _ProductCartActionsState extends State<_ProductCartActions> {
               right: 11
             ),
             child: Text(
-              "1"
+              count.toString()
             ),
           ),
-          const ButtonCircled(
-            width: 15,
-            height: 15,
-            padding: EdgeInsets.all(0),
+          ButtonCircled(
+            onClick: add,
+            width: 15 * proportion(context),
+            height: 15 * proportion(context),
+            padding: const EdgeInsets.all(0),
             backgroundColor: primaryColor,
             textColor: Colors.white,
-            iconSize: 12,
+            iconSize: 12 * proportion(context),
             mainAxisAlignment: MainAxisAlignment.center,
-            icon: CupertinoIcons.minus,
+            icon: CupertinoIcons.plus,
           )
         ],
       )

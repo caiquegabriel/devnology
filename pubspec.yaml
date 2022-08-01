@@ -40,6 +40,8 @@ dependencies:
   cached_network_image: ^3.2.1
   flutter_native_splash: ^2.2.6
   intl: ^0.17.0
+  mobx_codegen: ^2.0.7
+  build_runner: ^2.2.0
 
 dev_dependencies:
   flutter_test:

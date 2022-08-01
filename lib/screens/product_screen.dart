@@ -2,11 +2,13 @@ import 'package:devnology/components/buttons/widget_button_circled.dart';
 import 'package:devnology/components/products/widget_product_photos.dart';
 import 'package:devnology/entities/product.dart';
 import 'package:devnology/helpers.dart';
+import 'package:devnology/mobx/cart.dart';
 import 'package:devnology/screens/screen_component.dart';
 import 'package:devnology/style.dart';
 import 'package:devnology/template/template_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import '../components/products/widget_product_footer.dart';
 
 class ProductScreen extends StatefulWidget {
@@ -20,6 +22,8 @@ class ProductScreen extends StatefulWidget {
 
 class ProductScreenState extends State<ProductScreen> with ScreenComponent {
   
+  Cart cart = Modular.get<Cart>();
+
   @override
   Widget build(BuildContext context) {
     return content(
@@ -50,10 +54,10 @@ class ProductScreenState extends State<ProductScreen> with ScreenComponent {
           ],
         ),
       ),
-      customFooter: const ProductFooter(
+      customFooter: ProductFooter(
         safearea: true,
         children: [
-          ButtonCircled(
+          const ButtonCircled(
             width: 140,
             height: 40,
             text: "SHARE THIS",
@@ -61,6 +65,9 @@ class ProductScreenState extends State<ProductScreen> with ScreenComponent {
             textColor: primaryColorLigther,
           ),
           ButtonCircled(
+            onClick: () {
+              cart.addItem(widget.product);
+            },
             width: 140,
             height: 40,
             text: "ADD TO CART",

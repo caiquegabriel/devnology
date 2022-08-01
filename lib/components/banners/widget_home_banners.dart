@@ -1,7 +1,6 @@
 import 'package:devnology/components/banners/widget_custom_banner.dart';
 import 'package:devnology/components/titles/widget_title_h2.dart';
 import 'package:devnology/helpers.dart';
-import 'package:devnology/style.dart';
 import 'package:flutter/material.dart';
 
 class HomeBanners extends StatefulWidget {
@@ -46,6 +45,7 @@ class HomeBannersState extends State<HomeBanners> {
             margin: widget.margin
           ),
           Container(
+            margin: const EdgeInsets.all(0),
             width: double.infinity,
             height: _bannerHeight + 20,
             child: GridView(

@@ -86,6 +86,7 @@ class TemplateButtonState extends State<TemplateButton> {
                             widget.count!.toString(),
                             style: const TextStyle(
                               fontSize: 9,
+                              height: 0,
                               fontWeight: FontWeight.w700,
                               color: Colors.white
                             ),

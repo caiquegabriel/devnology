@@ -10,18 +10,22 @@ class Product {
 
   String? _description;
 
+  int _quantity = 1;
+
   Product({
     String name = "",
     String thumbnail = "",
     List<String> photos = const [],
     double price = 0.00,
-    String description = ""
+    String description = "",
+    int quantity = 1
   }) {
     _name = name;
     _thumbnail = thumbnail;
     _photos = [_thumbnail!] + photos;
     _price = price;
     _description = description;
+    _quantity = quantity;
   }
 
   String get name => _name!;
@@ -33,4 +37,6 @@ class Product {
   double get price => _price!;
 
   String get description => _description!;
+
+  int get quantity => _quantity;
 }

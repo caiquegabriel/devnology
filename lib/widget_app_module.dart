@@ -1,3 +1,4 @@
+import 'package:devnology/mobx/cart.dart';
 import 'package:devnology/screens/checkout_screen.dart';
 import 'package:devnology/screens/home_screen.dart';
 import 'package:devnology/screens/orders_screen.dart';
@@ -8,7 +9,7 @@ class AppModule extends Module{
 
   @override
   List<Bind> get binds => [
-    /// Injeção de dependencia
+    Bind((i) => Cart(), isSingleton: true)
   ];
 
   /// rotas do módulo 
