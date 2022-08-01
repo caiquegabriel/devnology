@@ -9,6 +9,7 @@ import 'package:devnology/screens/screen_component.dart';
 import 'package:devnology/style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class OrdersScreen extends StatefulWidget {
@@ -60,7 +61,7 @@ class OrdersScreenState extends State<OrdersScreen> with ScreenComponent, Automa
         width: double.infinity,
         child: Column(
           children: <Widget>[
-            TitleH2(
+            const TitleH2(
               "Cart",
               margin: EdgeInsets.only(
                 bottom: 20
@@ -85,13 +86,17 @@ class OrdersScreenState extends State<OrdersScreen> with ScreenComponent, Automa
                     color: Colors.white
                   ),
                 ),
-                Text(
-                  priceFormat(12222.90),
-                  style: const TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.white
-                  ),
+                Observer(
+                  builder: (i) {
+                    return Text(
+                      priceFormat(cart.value),
+                      style: const TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white
+                      ),
+                    );
+                  }
                 )
               ],
             )

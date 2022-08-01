@@ -8,6 +8,7 @@ import 'package:devnology/style.dart';
 import 'package:devnology/template/template_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import '../components/products/widget_product_footer.dart';
 
@@ -26,57 +27,62 @@ class ProductScreenState extends State<ProductScreen> with ScreenComponent {
 
   @override
   Widget build(BuildContext context) {
-    return content(
-      showBackButton: true,
-      customHeaderButton: const TemplateButton(
-        icon: CupertinoIcons.cart,
-        width: 25,
-        count: 2
-      ),
-      backgroundColor: Colors.white,
-      body: Container(
-        margin: const EdgeInsets.all(0),
-        width: double.infinity,
-        child: Column(
-          children: [
-            _ProductName(
-              name: widget.product.name
-            ),
-            ProductPhotos(
-              product: widget.product,
-            ),
-            _ProductPrice(
-              price: widget.product.price,
-            ),
-            _ProductAbout(
-              description: widget.product.description,
-            )
-          ],
-        ),
-      ),
-      customFooter: ProductFooter(
-        safearea: true,
-        children: [
-          const ButtonCircled(
-            width: 140,
-            height: 40,
-            text: "SHARE THIS",
-            icon: CupertinoIcons.chevron_up,
-            textColor: primaryColorLigther,
+    return Observer(
+      builder: (i) {
+        return content(
+          showBackButton: true,
+          customHeaderButton: TemplateButton(
+            icon: CupertinoIcons.cart,
+            width: 25,
+            count: cart.countItems()
           ),
-          ButtonCircled(
-            onClick: () {
-              cart.addItem(widget.product);
-            },
-            width: 140,
-            height: 40,
-            text: "ADD TO CART",
-            backgroundColor: primaryColor,
-            textColor: Colors.white,
-            icon: CupertinoIcons.chevron_right
+          backgroundColor: Colors.white,
+          body: Container(
+            margin: const EdgeInsets.all(0),
+            width: double.infinity,
+            child: Column(
+              children: [
+                _ProductName(
+                  name: widget.product.name
+                ),
+                ProductPhotos(
+                  product: widget.product,
+                ),
+                _ProductPrice(
+                  price: widget.product.price,
+                ),
+                _ProductAbout(
+                  description: widget.product.description,
+                )
+              ],
+            ),
           ),
-        ]
-      )
+          customFooter: ProductFooter(
+            safearea: true,
+            children: [
+              const ButtonCircled(
+                width: 140,
+                height: 40,
+                text: "SHARE THIS",
+                icon: CupertinoIcons.chevron_up,
+                textColor: primaryColorLigther,
+              ),
+              ButtonCircled(
+                onClick: () {
+                  cart.addItem(widget.product);
+                  navigatorPushNamed(context, '/orders');
+                },
+                width: 140,
+                height: 40,
+                text: "ADD TO CART",
+                backgroundColor: primaryColor,
+                textColor: Colors.white,
+                icon: CupertinoIcons.chevron_right
+              ),
+            ]
+          )
+        );
+      }
     );
   }
 }

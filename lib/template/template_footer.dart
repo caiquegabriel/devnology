@@ -3,6 +3,7 @@ import 'package:devnology/mobx/cart.dart';
 import 'package:devnology/style.dart';
 import 'package:devnology/template/template_button.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class TemplateFooter extends StatefulWidget {
@@ -99,18 +100,22 @@ class TemplateFooterState extends State<TemplateFooter> {
               ),
             ),
             Expanded(
-              child: TemplateButton(
-                width: 50,
-                height: 50,
-                icon: CupertinoIcons.cart,
-                text: "Cart",
-                key: _btnCart,
-                iconSize: 18 * _proportion,
-                fontSize: 11 * _proportion,
-                count: cart.countItems(),
-                onClick: () {
-                  navigatorPushNamed(context, '/orders');
-                },
+              child: Observer(
+                builder: (_) {
+                  return TemplateButton(
+                    width: 50,
+                    height: 50,
+                    icon: CupertinoIcons.cart,
+                    text: "Cart",
+                    key: _btnCart,
+                    iconSize: 18 * _proportion,
+                    fontSize: 11 * _proportion,
+                    count: cart.countItems(),
+                    onClick: () {
+                      navigatorPushNamed(context, '/orders');
+                    }
+                  );
+                }
               ),
             ),
             Expanded(

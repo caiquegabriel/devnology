@@ -25,6 +25,21 @@ mixin _$Cart on CartBase, Store {
     });
   }
 
+  late final _$valueAtom = Atom(name: 'CartBase.value', context: context);
+
+  @override
+  double get value {
+    _$valueAtom.reportRead();
+    return super.value;
+  }
+
+  @override
+  set value(double value) {
+    _$valueAtom.reportWrite(value, super.value, () {
+      super.value = value;
+    });
+  }
+
   late final _$CartBaseActionController =
       ActionController(name: 'CartBase', context: context);
 
@@ -40,9 +55,32 @@ mixin _$Cart on CartBase, Store {
   }
 
   @override
+  void removeItem(Product product) {
+    final _$actionInfo =
+        _$CartBaseActionController.startAction(name: 'CartBase.removeItem');
+    try {
+      return super.removeItem(product);
+    } finally {
+      _$CartBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void calculeTotalValue() {
+    final _$actionInfo = _$CartBaseActionController.startAction(
+        name: 'CartBase.calculeTotalValue');
+    try {
+      return super.calculeTotalValue();
+    } finally {
+      _$CartBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
-cartItems: ${cartItems}
+cartItems: ${cartItems},
+value: ${value}
     ''';
   }
 }

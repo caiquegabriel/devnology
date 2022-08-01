@@ -2,9 +2,11 @@ import 'package:devnology/components/buttons/widget_button_circled.dart';
 import 'package:devnology/components/widget_custom_image.dart';
 import 'package:devnology/entities/product.dart';
 import 'package:devnology/helpers.dart';
+import 'package:devnology/mobx/cart.dart';
 import 'package:devnology/style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class ProductCart extends StatefulWidget {
   final int count;
@@ -79,7 +81,7 @@ class ProductCartState extends State<ProductCart> {
                   ),
                 )
               ),
-              const _ProductCartActions()
+              _ProductCartActions(product: widget.product)
             ],
           )
         ]
@@ -93,7 +95,9 @@ class ProductCartState extends State<ProductCart> {
 
 
 class _ProductCartActions extends StatefulWidget {
-  const _ProductCartActions({Key? key}) : super(key: key);
+  final Product product;
+
+  const _ProductCartActions({Key? key, required this.product}) : super(key: key);
 
   @override
   _ProductCartActionsState createState() => _ProductCartActionsState();
@@ -103,11 +107,23 @@ class _ProductCartActionsState extends State<_ProductCartActions> {
 
   int count = 0;
 
+  Cart cart = Modular.get<Cart>();
+
+  @override
+  void initState() {
+    super.initState();
+
+    setState(() {
+      count = widget.product.quantity;
+    });
+  }
+
   void add() {
     if(!mounted) return;
     setState(() {
       count +=1;
     });
+    cart.addItem(widget.product);
   }
 
   void remove() {
@@ -115,6 +131,7 @@ class _ProductCartActionsState extends State<_ProductCartActions> {
     setState(() {
       count -=1;
     });
+    cart.removeItem(widget.product);
   }
 
   @override

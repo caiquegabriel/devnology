@@ -12,13 +12,16 @@ class Product {
 
   int _quantity = 1;
 
+  int _id = 0;
+
   Product({
     String name = "",
     String thumbnail = "",
     List<String> photos = const [],
     double price = 0.00,
     String description = "",
-    int quantity = 1
+    int quantity = 1,
+    int id = 1
   }) {
     _name = name;
     _thumbnail = thumbnail;
@@ -26,6 +29,7 @@ class Product {
     _price = price;
     _description = description;
     _quantity = quantity;
+    _id = id;
   }
 
   String get name => _name!;
@@ -39,4 +43,10 @@ class Product {
   String get description => _description!;
 
   int get quantity => _quantity;
+
+  int get id => _id;
+
+  set quantity(int quantity) {
+    _quantity = quantity;
+  }
 }
