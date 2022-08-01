@@ -57,6 +57,7 @@ class TemplateButtonState extends State<TemplateButton> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
+              margin: const EdgeInsets.all(0),
               child: Stack(
                 children: [
                   Container(

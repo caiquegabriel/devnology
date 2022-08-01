@@ -27,7 +27,8 @@ class ProductScreenState extends State<ProductScreen> with ScreenComponent {
       showBackButton: true,
       customHeaderButton: const TemplateButton(
         icon: CupertinoIcons.cart,
-        width: 15,
+        width: 25,
+        count: 2
       ),
       backgroundColor: Colors.white,
       body: Container(
@@ -43,6 +44,9 @@ class ProductScreenState extends State<ProductScreen> with ScreenComponent {
             ),
             _ProductPrice(
               price: widget.product.price,
+            ),
+            _ProductAbout(
+              description: widget.product.description,
             )
           ],
         ),
@@ -117,7 +121,7 @@ class _ProductPrice extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
-            "Price",
+            "Price:",
             style: TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.w700,
@@ -131,6 +135,55 @@ class _ProductPrice extends StatelessWidget {
               fontWeight: FontWeight.w900,
               overflow: TextOverflow.ellipsis,
               color: primaryColor
+            )
+          ),
+        ],
+      )
+    );
+  }
+}
+
+class _ProductAbout extends StatelessWidget {
+  final String description;
+
+  const _ProductAbout({Key? key, required this.description}) : super(key: key);
+
+  @override
+  Widget build(BuildContext contex) {
+    return Container(
+      margin: const EdgeInsets.only(
+        left: 20,
+        right: 20,
+        top: 8,
+        bottom: 15
+      ),
+      alignment: Alignment.centerLeft,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            margin: const EdgeInsets.only(
+              bottom: 10
+            ),
+            child: const Text(
+              "About this item:",
+              maxLines: 2,
+              style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w700,
+                overflow: TextOverflow.ellipsis
+              )
+            ),
+          ),
+          Text(
+            description,
+            maxLines: 6,
+            style: const TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w400,
+              overflow: TextOverflow.ellipsis,
+              color: Colors.black
             )
           ),
         ],

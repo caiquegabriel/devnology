@@ -65,17 +65,20 @@ class HomeScreenState extends State<HomeScreen> with ScreenComponent {
                 Product(
                   thumbnail: "assets/images/products/3192783133_1SZ 1(1).png",
                   name: "Lenovo - IdeaPad L340 15 Gaming",
-                  price: 717.80
+                  price: 717.80,
+                  description: "1.8 GHz Intel Core i7-10510U Quad-Core Processor \n 16GB of DDR4 RAM | 512GB SSD \n 15.6' 1920 x 1080 IPS Display \n NVIDIA Quadro P520 \n Windows 10 Pro 64-Bit Edition \n 1.8 GHz Intel Core i7-10510U Quad-Core Processor \n 16GB of DDR4 RAM | 512GB SSD \n 15.6' 1920 x 1080 IPS Display \n NVIDIA Quadro P520"
                 ),
                 Product(
                   thumbnail: "assets/images/products/3000222362_PRD_1500_1 1(1).png",
                   name: "Lenovo 15.6' ThinkPad P15s Gen 1",
-                  price: 1519.80
+                  price: 1519.80,
+                  description: "1.8 GHz Intel Core i7-10510U Quad-Core Processor \n 16GB of DDR4 RAM | 512GB SSD \n 15.6' 1920 x 1080 IPS Display \n NVIDIA Quadro P520 \n Windows 10 Pro 64-Bit Edition \n 1.8 GHz Intel Core i7-10510U Quad-Core Processor \n 16GB of DDR4 RAM | 512GB SSD \n 15.6' 1920 x 1080 IPS Display \n NVIDIA Quadro P520"
                 ),
                 Product(
                   thumbnail: "assets/images/products/ideapad-flex-i5-hero-subseries-br 1(1).png",
                   name: "Notebook Lenovo 2 em 1",
-                  price: 4699.80
+                  price: 4699.80,
+                  description: "1.8 GHz Intel Core i7-10510U Quad-Core Processor \n 16GB of DDR4 RAM | 512GB SSD \n 15.6' 1920 x 1080 IPS Display \n NVIDIA Quadro P520 \n Windows 10 Pro 64-Bit Edition \n 1.8 GHz Intel Core i7-10510U Quad-Core Processor \n 16GB of DDR4 RAM | 512GB SSD \n 15.6' 1920 x 1080 IPS Display \n NVIDIA Quadro P520"
                 ),
               ]
             )
