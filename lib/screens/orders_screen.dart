@@ -1,6 +1,8 @@
 import 'package:devnology/components/buttons/widget_button_circled.dart';
+import 'package:devnology/components/cart/widget_product_cart.dart';
 import 'package:devnology/components/products/widget_product_footer.dart';
 import 'package:devnology/components/titles/widget_title_h2.dart';
+import 'package:devnology/entities/product.dart';
 import 'package:devnology/helpers.dart';
 import 'package:devnology/screens/screen_component.dart';
 import 'package:devnology/style.dart';
@@ -19,7 +21,7 @@ class OrdersScreenState extends State<OrdersScreen> with ScreenComponent {
   @override
   Widget build(BuildContext context) {
     return content(
-      backgroundColor: const Color.fromRGBO(240, 240, 240, 1),
+      backgroundColor: Colors.white,
       body: Container(
         margin: const EdgeInsets.only(
           left: 25,
@@ -29,9 +31,30 @@ class OrdersScreenState extends State<OrdersScreen> with ScreenComponent {
         width: double.infinity,
         child: Column(
           children: [
-            TitleH2(
-              "Cart"
-            )
+            const TitleH2(
+              "Cart",
+              margin: EdgeInsets.only(
+                bottom: 20
+              )
+            ),
+            ProductCart(
+              count: 1,
+              product: Product(
+                thumbnail: "assets/images/products/3000222362_PRD_1500_1 1(1).png",
+                name: "Lenovo 15.6' ThinkPad P15s Gen 1",
+                price: 1519.80,
+                description: "1.8 GHz Intel Core i7-10510U Quad-Core Processor \n 16GB of DDR4 RAM | 512GB SSD \n 15.6' 1920 x 1080 IPS Display \n NVIDIA Quadro P520 \n Windows 10 Pro 64-Bit Edition \n 1.8 GHz Intel Core i7-10510U Quad-Core Processor \n 16GB of DDR4 RAM | 512GB SSD \n 15.6' 1920 x 1080 IPS Display \n NVIDIA Quadro P520"
+              ),
+            ),
+            ProductCart(
+              count: 1,
+              product: Product(
+                thumbnail: "assets/images/products/ideapad-flex-i5-hero-subseries-br 1(1).png",
+                name: "Notebook Lenovo 2 em 1",
+                price: 4699.80,
+                description: "1.8 GHz Intel Core i7-10510U Quad-Core Processor \n 16GB of DDR4 RAM | 512GB SSD \n 15.6' 1920 x 1080 IPS Display \n NVIDIA Quadro P520 \n Windows 10 Pro 64-Bit Edition \n 1.8 GHz Intel Core i7-10510U Quad-Core Processor \n 16GB of DDR4 RAM | 512GB SSD \n 15.6' 1920 x 1080 IPS Display \n NVIDIA Quadro P520"
+              ),
+            ),
           ],
         )
       ),

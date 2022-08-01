@@ -1,11 +1,10 @@
-import 'package:devnology/style.dart';
 import 'package:flutter/material.dart';
 
 class ButtonCircled extends StatefulWidget {
 
   final String? text;
 
-  final IconData icon;
+  final IconData? icon;
 
   final double? iconSize;
 
@@ -23,7 +22,13 @@ class ButtonCircled extends StatefulWidget {
 
   final double? fontSize;
 
-  const ButtonCircled({Key? key, this.fontSize, this.textColor, this.backgroundColor, this.text, this.iconSize, required this.icon, this.onClick, this.count, this.width, this.height}) : super(key: key);
+  final double? borderRadius;
+
+  final EdgeInsets? padding;
+
+  final MainAxisAlignment? mainAxisAlignment;
+
+  const ButtonCircled({Key? key, this.padding, this.mainAxisAlignment, this.fontSize, this.textColor, this.backgroundColor, this.text, this.iconSize, this.icon, this.onClick, this.count, this.width, this.height, this.borderRadius}) : super(key: key);
 
   @override
   ButtonCircledState createState() => ButtonCircledState();
@@ -42,7 +47,7 @@ class ButtonCircledState extends State<ButtonCircled> {
       },
       child: Container(
         margin: const EdgeInsets.all(0),
-        padding: const EdgeInsets.only(
+        padding: widget.padding ?? const EdgeInsets.only(
           bottom: 10,
           top: 10,
           left: 20,
@@ -52,10 +57,10 @@ class ButtonCircledState extends State<ButtonCircled> {
         height: widget.height ?? 50,
         decoration: BoxDecoration(
           color: widget.backgroundColor ?? Colors.white,
-          borderRadius: BorderRadius.circular(100)
+          borderRadius: BorderRadius.circular(widget.borderRadius ?? 100)
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: widget.mainAxisAlignment ?? MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             (widget.text != null)
@@ -73,11 +78,15 @@ class ButtonCircledState extends State<ButtonCircled> {
                 )
               :
                 const SizedBox.shrink(),
-              Icon(
-                widget.icon,
-                size: widget.iconSize ?? 16,
-                color: widget.textColor ?? Colors.white,
-              ),
+            (widget.icon != null)
+              ?
+                Icon(
+                  widget.icon,
+                  size: widget.iconSize ?? 16,
+                  color: widget.textColor ?? Colors.white,
+                )
+              :
+                const SizedBox.shrink()
           ],
         ),
       ),
