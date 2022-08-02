@@ -34,7 +34,10 @@ class ProductScreenState extends State<ProductScreen> with ScreenComponent {
           customHeaderButton: TemplateButton(
             icon: CupertinoIcons.cart,
             width: 25,
-            count: cart.countItems()
+            count: cart.countItems(),
+            onClick: () {
+              navigatorPushNamed(context, '/orders');
+            },
           ),
           backgroundColor: Colors.white,
           body: Container(
